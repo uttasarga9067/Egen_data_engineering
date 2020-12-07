@@ -112,7 +112,4 @@
   
   
   
-  ## Thank you for this Opportunity and I wish you liked my explanation
-  
-  
-  
+  ## Thank you for this Opportunity and I hope you liked my explanation
