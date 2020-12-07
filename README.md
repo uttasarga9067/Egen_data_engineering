@@ -8,7 +8,7 @@
 4. Schedule this Job to run everyday using Apache Airflow.
 
 
-### 1. Scan through COVID Data Sources in a JSON File.
+## Scan through COVID Data Sources in a JSON File.
 #### 1. I used Jupyter Notebook to develop a Python Script to extract URL's which consists of Data Sources with COVID-19 Datasets.
 #### 2. Below is an example of the JSON Data which explains about the various Data Sources present in the Online API's.
 
@@ -50,14 +50,69 @@
   'title': 'NCCI Procedure to Procedure Edits (PTP)'}}
   
   #### As the dataset is present in the above URL's given, we can iterate through this data and pick Keywords which consists of COVID-19, CORONAVIRUS and Severe Acute Respiratory disease as their respective keywords.
+  
   ![ScreenShot](https://github.com/uttasarga9067/Egen_data_engineering/blob/main/1.PNG)
   
   #### After this, I extracted the URLS for every data source which consists these above Keywords.
+  
   ![ScreenShot](https://github.com/uttasarga9067/Egen_data_engineering/blob/main/2.PNG)
   
   #### Now, after writing a function to download the Data in my local machine, I saved the Data in this manner.
+  
    ![ScreenShot](https://github.com/uttasarga9067/Egen_data_engineering/blob/main/3.PNG)
    
   #### Since the basic funtioning of my Data Extraction was ready, I deployed the Data in my PostGres Database using this function.
+  
    ![ScreenShot](https://github.com/uttasarga9067/Egen_data_engineering/blob/main/4.PNG)  
  
+  #### The Data was successfully transferred in PostGres Database.
+  
+   ![ScreenShot](https://github.com/uttasarga9067/Egen_data_engineering/blob/main/postgres_database_cdc_data.PNG)
+   
+  ## Scheduling this Job using Apache Airflow
+  #### Airflow is a state-of-the-art Data Engineering Software developed by AirBnB, which helps to reiterate the Scripts that are developed to load the Data from a particular Database into the Database of your choice (Local Machine, Cloud Sources like AZURE, GCP and AWS).
+  #### There are various parameters that we have to keep in mind while wiritng a Python Script for runnning as an ETL job in Airflow.
+  ##### 1. Importing the Necessary Libraries.
+  #### We can import python operator in order to communicate with Airflow that the function/script that we want to run is a Python File.
+  ![ScreenShot](https://github.com/uttasarga9067/Egen_data_engineering/blob/main/5.PNG)
+  
+  #### We should now give some default arguments so that we can schedule the number of times we want to run this Job.
+  
+  ![ScreenShot](https://github.com/uttasarga9067/Egen_data_engineering/blob/main/6.PNG)
+  
+  
+  ###### ** Please note that the dag_id in the DAG function should be similar to the name of your Python Script in which you are writing these functions.** ######
+  
+  #### Create a function to include your whole end-to-end code which is functioning as expected in your Jupyter Notebook.
+    
+  ###### ** You can check this function in data.py file uploaded with this repository.** ######
+  
+  #### Next step is to call the Python Operator and execute the function with the associated DAG (Data- Acyclic Graph)
+  
+  ![ScreenShot](https://github.com/uttasarga9067/Egen_data_engineering/blob/main/7.PNG)
+  
+  ###### ** Several Operators can be included and also they can be organized in the manner we want to execute the multiple operators.** ###### 
+  ###### ** For Example: run_etl >> dummy_etl >> dummy_etl2** ######
+  
+  #### Triggering the DAG Created and checking its Status and Logs.
+  
+  ![ScreenShot](https://github.com/uttasarga9067/Egen_data_engineering/blob/main/8.PNG)
+  
+  #### Checking the Data which is stored in the Virtual Container for loading in PostGres Database.
+  
+  ![ScreenShot](https://github.com/uttasarga9067/Egen_data_engineering/blob/main/9.PNG)
+  
+  ## Copying the Data into my Local Machine and Loading it in PostGres Database.
+  
+  ![ScreenShot](https://github.com/uttasarga9067/Egen_data_engineering/blob/main/10.PNG)
+  
+  #### Database with the Required Data.
+  
+  ![ScreenShot](https://github.com/uttasarga9067/Egen_data_engineering/blob/main/postgres_database_cdc_data.PNG)
+  
+  
+  
+  ## Thank you for this Opportunity and I wish you liked my explanation
+  
+  
+  
